@@ -11,10 +11,11 @@ public interface SplashContact {
 
     interface View extends BaseView {
         void animateBeforeLeave();
+        void navigateToMoviesList();
     }
 
     interface Presenter extends BasePresenter {
-
+        int SPLASH_MINIMUM_WAIT_TIME = 1;
     }
 
 }

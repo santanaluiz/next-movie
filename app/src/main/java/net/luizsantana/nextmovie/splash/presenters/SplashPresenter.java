@@ -2,12 +2,8 @@ package net.luizsantana.nextmovie.splash.presenters;
 
 import android.util.Log;
 
-import net.luizsantana.nextmovie.common.mvp.BaseView;
 import net.luizsantana.nextmovie.common.utils.DelayTask;
 import net.luizsantana.nextmovie.splash.contracts.SplashContact;
-
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -31,18 +27,14 @@ public class SplashPresenter implements SplashContact.Presenter {
     }
 
     private void startTimer() {
-        DelayTask.waitFor(1, SECONDS)
+        DelayTask.waitFor(SPLASH_MINIMUM_WAIT_TIME, SECONDS)
                 .withTask(new DelayTask.Task() {
                     @Override
                     public void run() {
-                        routeToMoviesList();
+                        view.navigateToMoviesList();
                     }
                 })
                 .execute();
-    }
-
-    private void routeToMoviesList() {
-        Log.d(TAG, "Routing to movies list");
     }
 
     @Override

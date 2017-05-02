@@ -34,4 +34,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContact.V
         // TODO animateLogo
         Log.d(TAG, "Animating view...");
     }
+
+    @Override
+    public void navigateToMoviesList() {
+        Log.d(TAG, "Navigating to movies list");
+    }
 }
