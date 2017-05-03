@@ -1,10 +1,12 @@
 package net.luizsantana.nextmovie.splash.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import net.luizsantana.nextmovie.R;
+import net.luizsantana.nextmovie.movies.activity.MoviesActivity;
 import net.luizsantana.nextmovie.splash.contracts.SplashContact;
 import net.luizsantana.nextmovie.splash.presenters.SplashPresenter;
 
@@ -22,11 +24,13 @@ public class SplashActivity extends AppCompatActivity implements SplashContact.V
     @Override
     protected void onStart() {
         super.onStart();
+        presenter.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        presenter.onStop();
     }
 
     @Override
@@ -38,5 +42,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContact.V
     @Override
     public void navigateToMoviesList() {
         Log.d(TAG, "Navigating to movies list");
+        startActivity(new Intent(this, MoviesActivity.class));
+        finish();
     }
 }
