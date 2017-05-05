@@ -2,6 +2,7 @@ package net.luizsantana.nextmovie.splash.presenters;
 
 import android.util.Log;
 
+import net.luizsantana.nextmovie.common.mvp.BaseView;
 import net.luizsantana.nextmovie.common.utils.DelayTask;
 import net.luizsantana.nextmovie.splash.contracts.SplashContact;
 
@@ -15,19 +16,19 @@ public class SplashPresenter implements SplashContact.Presenter {
 
     public static final String TAG = SplashPresenter.class.getName();
     private SplashContact.View view;
-
-    public SplashPresenter(SplashContact.View view) {
-        this.view = view;
-    }
+    private boolean timerStarted;
 
     @Override
-    public void onStart() {
-        view.animateBeforeLeave();
+    public void onViewAttached(BaseView view) {
+        this.view = (SplashContact.View) view;
+        if (timerStarted) return;
+
+        this.view.animateBeforeLeave();
         startTimer();
     }
 
     private void startTimer() {
-        DelayTask.waitFor(SPLASH_MINIMUM_WAIT_TIME, SECONDS)
+        timerStarted = DelayTask.waitFor(SPLASH_MINIMUM_WAIT_TIME)
                 .withTask(new DelayTask.Task() {
                     @Override
                     public void run() {
@@ -38,7 +39,12 @@ public class SplashPresenter implements SplashContact.Presenter {
     }
 
     @Override
-    public void onStop() {
+    public void onViewDetached() {
+
+    }
+
+    @Override
+    public void onDestroyed() {
 
     }
 }

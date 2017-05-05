@@ -35,8 +35,8 @@ public class DelayTask {
         return this;
     }
 
-    public void execute() {
-        if (task == null) return;
+    public boolean execute() {
+        if (task == null) return false;
 
         new Timer().schedule(new TimerTask() {
             @Override
@@ -44,6 +44,8 @@ public class DelayTask {
                 task.run();
             }
         }, waitTime);
+
+        return true;
     }
 
     public interface Task {

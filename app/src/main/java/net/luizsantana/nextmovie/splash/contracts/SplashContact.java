@@ -15,7 +15,7 @@ public interface SplashContact {
     }
 
     interface Presenter extends BasePresenter {
-        int SPLASH_MINIMUM_WAIT_TIME = 2;
+        int SPLASH_MINIMUM_WAIT_TIME = 2000;
     }
 
 }

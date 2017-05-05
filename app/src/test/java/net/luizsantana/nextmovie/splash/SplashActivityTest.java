@@ -24,9 +24,9 @@ public class SplashActivityTest {
     @Test
     public void presenterCallsViewAnimation() {
         SplashContact.View viewMock = Mockito.mock(SplashContact.View.class);
-        SplashContact.Presenter presenter = new SplashPresenter(viewMock);
+        SplashContact.Presenter presenter = new SplashPresenter();
 
-        presenter.onStart();
+        presenter.onViewAttached(viewMock);
 
         verify(viewMock, atLeastOnce()).animateBeforeLeave();
     }
@@ -34,11 +34,11 @@ public class SplashActivityTest {
     @Test
     public void presenterCallsNavigateToMoviesList() throws InterruptedException {
         SplashContact.View viewMock = Mockito.mock(SplashContact.View.class);
-        SplashContact.Presenter presenter = new SplashPresenter(viewMock);
+        SplashContact.Presenter presenter = new SplashPresenter();
 
-        presenter.onStart();
+        presenter.onViewAttached(viewMock);
 
-        lock.await(SPLASH_MINIMUM_WAIT_TIME, TimeUnit.SECONDS);
+        lock.await(SPLASH_MINIMUM_WAIT_TIME, TimeUnit.MILLISECONDS);
 
         verify(viewMock, atLeastOnce()).navigateToMoviesList();
     }

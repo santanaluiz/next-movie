@@ -5,6 +5,7 @@ package net.luizsantana.nextmovie.common.mvp;
  */
 
 public interface BasePresenter {
-    void onStart();
-    void onStop();
+    void onViewAttached(BaseView view);
+    void onViewDetached();
+    void onDestroyed();
 }

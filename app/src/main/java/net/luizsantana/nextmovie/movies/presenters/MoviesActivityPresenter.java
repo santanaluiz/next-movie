@@ -1,5 +1,6 @@
 package net.luizsantana.nextmovie.movies.presenters;
 
+import net.luizsantana.nextmovie.common.mvp.BaseView;
 import net.luizsantana.nextmovie.movies.activity.MoviesActivity;
 import net.luizsantana.nextmovie.movies.contracts.MoviesActivityContract;
 
@@ -9,19 +10,20 @@ import net.luizsantana.nextmovie.movies.contracts.MoviesActivityContract;
 
 public class MoviesActivityPresenter implements MoviesActivityContract.Presenter {
 
-    private final MoviesActivityContract.View view;
+    private MoviesActivityContract.View view;
 
-    public MoviesActivityPresenter(MoviesActivityContract.View view) {
-        this.view = view;
+    @Override
+    public void onViewAttached(BaseView view) {
+        this.view = (MoviesActivityContract.View) view;
     }
 
     @Override
-    public void onStart() {
+    public void onViewDetached() {
 
     }
 
     @Override
-    public void onStop() {
+    public void onDestroyed() {
 
     }
 }
